@@ -28,7 +28,7 @@ const Header = () => {
 
         {/* mobile navigation */}
         <div className="xl:hidden">
-        
+          mobile nav
         </div>
 
 

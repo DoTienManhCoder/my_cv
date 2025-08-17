@@ -1,6 +1,8 @@
 import { JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
+import PageTransition from "@/components/PageTransition";
+import NavTransition from "@/components/NavTransition"; // <-- thêm
 
 const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
@@ -17,8 +19,16 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className={jetbrainsMono.variable}>
       <body>
-        <Header />
-        {children}</body>
+        {/* Navbar: blur + fade */}
+        <NavTransition>
+          <Header />
+        </NavTransition>
+
+        {/* Nội dung: flip 3D */}
+        <PageTransition variant="flip">
+          {children}
+        </PageTransition>
+      </body>
     </html>
   );
 }
