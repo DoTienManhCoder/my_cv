@@ -1,4 +1,3 @@
-// app/(home)/Home.tsx hoặc src/app/Home.tsx (đặt theo cấu trúc dự án của bạn)
 "use client";
 
 import React from "react";
@@ -7,9 +6,11 @@ import { Button } from "@/components/ui/button";
 import { FiDownload, FiMail } from "react-icons/fi";
 import Socials from "@/components/Socials";
 import Photo from "@/components/Photo";
+import Stats from "@/components/Stats";
 
 const Home = () => {
   return (
+    <>
     <section className="relative h-full">
       {/* Decorative background blobs */}
       <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
@@ -107,7 +108,12 @@ const Home = () => {
           </div>
         </div>
       </div>
+      {/* Decorative background blobs */}
+      <Stats />
     </section>
+
+    
+    </>
   );
 };
 
