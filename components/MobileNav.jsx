@@ -1,3 +1,4 @@
+// components/MobileNav.jsx
 "use client";
 
 import {
@@ -24,38 +25,51 @@ const MobileNav = () => {
 
   return (
     <Sheet>
-      <SheetTrigger className="flex justify-center items-center">
-        <CiMenuFries className="text-[32px] text-accent" />
+      <SheetTrigger
+        className="inline-flex items-center justify-center rounded-full h-10 w-10 ring-1 ring-white/15 hover:ring-white/30 bg-white/5"
+        aria-label="Open menu"
+      >
+        <CiMenuFries className="text-[24px] text-accent" />
       </SheetTrigger>
 
-
-      <SheetContent side="right" className="bg-primary text-white flex flex-col">
-        <SheetHeader className="sr-only">
-          <SheetTitle>Mobile navigation</SheetTitle>
-        </SheetHeader>
-
-        <div className="mt-24 mb-10 text-center">
-          <Link href="/" className="inline-block">
-            <h1 className="text-4xl font-semibold">
-              ManhDo<span className="text-accent">.</span>
-            </h1>
-          </Link>
+      <SheetContent
+        side="right"
+        className="w-[85%] sm:w-[380px] p-0 bg-primary text-white border-l border-white/10"
+      >
+        {/* Header */}
+        <div className="h-20 flex items-center px-6 border-b border-white/10">
+          <SheetHeader>
+            <SheetTitle className="text-2xl font-semibold">
+              <Link href="/" className="flex items-baseline gap-1">
+                <span className="text-accent">ManhDo</span>
+                <span className="text-accent">.</span>
+              </Link>
+            </SheetTitle>
+          </SheetHeader>
         </div>
 
-        <nav className="mt-10 text-center flex flex-col gap-4">
+        {/* Nav list */}
+        <nav className="px-6 py-6 flex flex-col gap-1">
           {links.map((link) => {
             const active = pathname === link.href;
             return (
               <SheetClose asChild key={link.href}>
                 <Link
                   href={link.href}
-                  className={`px-2 py-3 text-lg transition-all ${
-                    active
-                      ? "text-accent font-medium"
-                      : "text-white/90 hover:text-accent"
-                  }`}
+                  className={`
+                    w-full px-4 py-3 rounded-lg text-base tracking-wide transition
+                    ${active
+                      ? "bg-accent/10 text-accent ring-1 ring-accent/40"
+                      : "hover:bg-white/5 text-white/90"}
+                    flex items-center justify-between
+                  `}
                 >
-                  {link.label}
+                  <span>{link.label}</span>
+                  <span
+                    className={`h-1.5 w-1.5 rounded-full ${
+                      active ? "bg-accent" : "bg-white/30"
+                    }`}
+                  />
                 </Link>
               </SheetClose>
             );

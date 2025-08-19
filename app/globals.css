@@ -49,19 +49,34 @@
 /* =========================
    BASE LAYER (reset & defaults)
    ========================= */
-@layer base {
-
-  .container {
-    --container-padding: 15px;
+   @layer base {
+    /* Container padding */
+    .container {
+      @apply max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8;
+    }
+  
+    /* Base styles cho toàn site */
+    html, body {
+      height: 100%;
+      font-family: var(--font-primary);
+      background: var(--color-primary);
+      color: white;
+    }
+  
+    /* Heading styles */
+    .h1 {
+      @apply text-[48px] xl:text-[80px] font-semibold leading-[1.1];
+    }
+  
+    .h2 {
+      @apply text-[36px] xl:text-[48px] font-semibold leading-[1.1];
+    }
+  
+    .h3 {
+      @apply text-[20px] xl:text-[24px] font-semibold leading-[1.1];
+    }
   }
-
-  html, body {
-    height: 100%;
-    font-family: var(--font-primary);
-    background: var(--color-primary);
-    color: white;
-  }
-}
+  
 
 
 
