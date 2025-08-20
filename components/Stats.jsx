@@ -3,38 +3,33 @@
 import CountUp from "react-countup";
 
 const StatsData = [
-  { num: 12, text: "Years of Experience" },
-  { num: 50, text: "Projects Completed" },
-  { num: 100, text: "Technologies mastered" },
-  { num: 5, text: "Code commits" },
+  { num: 1, text: "Years of Experience" },
+  { num: 7, text: "Projects Completed" },
+  { num: 6, text: "Technologies mastered" },
+  { num: 500, text: "Code commits" },
 ];
 
 const Stats = () => {
   return (
-    <section>
+    <section className="pt-4 pb-12 xl:pt-0 xl:pb-0">
       <div className="container mx-auto">
-        <div className="flex flex-wrap gap-6 max-w-[80vw] mx-auto xl:max-w-none">
-          {StatsData.map((item, index) => {
-            return (
-              <div
-                className="flex-1 flex gap-4 items-center justify-center xl:justify-start"
-                key={index}
-              >
-                <CountUp
-                  end={item.num}
-                  duration={5}
-                  delay={1}
-                  className="text-4xl xl:text-6xl font-extrabold"
-                />
-                <span className="text-sm xl:text-base opacity-70">
-                  {item.label}
-                </span>
-                <p className={`${item.text<15 ? "max-w-[100px]" : "max-w-[150px]"} leading-snug text-white/80`}>
-                    {item.text}
-                </p>
-              </div>
-            );
-          })}
+        <div className="grid grid-cols-2 xl:grid-cols-4 gap-6 max-w-[80vw] mx-auto xl:max-w-none">
+          {StatsData.map((item, index) => (
+            <div
+              className="flex flex-col items-center xl:items-start text-center xl:text-left"
+              key={index}
+            >
+              <CountUp
+                end={item.num}
+                duration={5}
+                delay={1}
+                className="text-4xl xl:text-6xl font-extrabold"
+              />
+              <p className="leading-snug text-white/80 max-w-[150px] mt-2">
+                {item.text}
+              </p>
+            </div>
+          ))}
         </div>
       </div>
     </section>
