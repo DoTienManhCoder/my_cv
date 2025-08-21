@@ -106,24 +106,24 @@ const Resume = () => {
       className="min-h-[80vh] flex items-center justify-center py-12 xl:py-0"
     >
       <div className="container mx-auto">
-        {/* Grid 1/3 – 2/3 */}
+
         <Tabs
           defaultValue="experience"
-          className="grid grid-cols-1 xl:grid-cols-3 gap-10"
+          className="grid grid-cols-1 xl:grid-cols-3"
         >
-          {/* Left: 1/3 */}
+
           <TabsList className="col-span-1 flex flex-col w-full max-w-[420px] xl:max-w-none mx-auto xl:mx-0 gap-4">
             <TabsTrigger value="experience">Experience</TabsTrigger>
             <TabsTrigger value="education">Education</TabsTrigger>
             <TabsTrigger value="skills">Skills</TabsTrigger>
             <TabsTrigger value="about">About Me</TabsTrigger>
           </TabsList>
+          
 
-          {/* Right: 2/3 */}
           <div className="col-span-2 min-h-[70vh] w-full">
             {/* experience */}
             <TabsContent value="experience">
-              <div className="flex flex-col text-center gap-6 xl:text-left">
+              <div className="flex flex-col text-center gap-6 xl:text-left xl:mx-6 mt-6 xl:mt-0">
                 <h3 className="text-4xl font-bold">{experience.title}</h3>
                 <p className="max-w-[600px] text-white/70 mx-auto xl:mx-0">
                   {experience.description}
@@ -153,7 +153,7 @@ const Resume = () => {
 
             {/* education */}
             <TabsContent value="education">
-              <div className="flex flex-col text-center gap-6 xl:text-left">
+              <div className="flex flex-col text-center gap-6 xl:text-left xl:mx-6 mt-6 xl:mt-0">
                 <h3 className="text-4xl font-bold">{education.title}</h3>
                 <p className="max-w-[600px] text-white/70 mx-auto xl:mx-0">
                   {education.description}
@@ -183,7 +183,7 @@ const Resume = () => {
 
             {/* skills */}
             <TabsContent value="skills">
-              <div className="flex flex-col items-center xl:items-start">
+              <div className="flex flex-col items-center xl:items-start xl:mx-6 mt-6 xl:mt-0">
                 <h2 className="text-3xl font-bold mb-3">{skills.title}</h2>
                 <p className="text-white/70 mb-6 max-w-[600px] text-center xl:text-left">
                   {skills.description}
@@ -213,7 +213,7 @@ const Resume = () => {
             {/* about */}
             <TabsContent
               value="about"
-              className="w-full text-center xl:text-left"
+              className="w-full text-center xl:text-left xl:mx-6 mt-6 xl:mt-0"
             >
               <div className="flex flex-col gap-[30px]">
                 <h3 className="text-4xl font-bold">{about.title}</h3>

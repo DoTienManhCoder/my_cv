@@ -8,7 +8,7 @@ export function Tabs({ className, orientation = "vertical", ...props }) {
   return (
     <TabsPrimitive.Root
       orientation={orientation}
-      className={cn("flex flex-col gap-6 xl:mt-12", className)}
+      className={cn("flex flex-col xl:mt-12", className)}
       {...props}
     />
   );
