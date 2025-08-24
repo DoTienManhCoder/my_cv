@@ -1,11 +1,11 @@
 "use client";
+import { useRef, useState } from "react";
+import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { FaPhoneAlt, FaMapMarkerAlt } from "react-icons/fa";
 import { FiMail } from "react-icons/fi";
-import { motion } from "framer-motion";
-import { useState } from "react";
 
 const info = [
   { icon: <FaPhoneAlt />, title: "Phone", description: "+84 353 830 297" },
@@ -15,48 +15,80 @@ const info = [
 
 export default function Page() {
   const [loading, setLoading] = useState(false);
-  const [status, setStatus] = useState(null);
+  const [status, setStatus] = useState(null); // { ok: boolean, msg: string } | null
+  const formRef = useRef(null);
 
   async function handleSubmit(event) {
     event.preventDefault();
     setLoading(true);
     setStatus(null);
 
-    const fd = new FormData(event.currentTarget); // ✅ currentTarget
+    const form = formRef.current; // giữ tham chiếu ổn định cho reset()
+    const fd = new FormData(form);
+
+    // Honeypot chống bot (nếu có giá trị => bỏ qua)
+    if (fd.get("company")) {
+      setStatus({ ok: true, msg: "Send message success" });
+      form?.reset();
+      setLoading(false);
+      return;
+    }
+
     const payload = {
       name: fd.get("name"),
       email: fd.get("email"),
       phone: fd.get("phone"),
       message: fd.get("message"),
-      // honeypot (nếu có)
-      company: fd.get("company"),
     };
 
-    // optional: chặn bot nếu dùng honeypot
-    if (payload.company) {
-      setLoading(false);
-      setStatus({ ok: true, msg: "Message sent successfully!" });
-      event.currentTarget.reset();
-      return;
-    }
+    // Timeout an toàn
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 15000);
 
     try {
-      const res = await fetch("/api/contact", {
+      const url = `${window.location.origin}/api/contact`;
+      const res = await fetch(url, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
+        signal: controller.signal,
       });
-      const data = await res.json();
 
-      if (data.ok) {
-        setStatus({ ok: true, msg: "Message sent successfully!" });
-        event.currentTarget.reset(); // ✅ sửa lỗi chính tả
-      } else {
-        setStatus({ ok: false, msg: "Something went wrong, please try again later." });
+      // Đọc text trước, rồi thử parse JSON (tránh throw)
+      const raw = await res.text();
+      let data = null;
+      try {
+        data = raw ? JSON.parse(raw) : null;
+      } catch {
+        data = null;
       }
-    } catch {
-      setStatus({ ok: false, msg: "Something went wrong, please try again later." });
+
+      if (res.ok && data && data.ok) {
+        setStatus({ ok: true, msg: "Send message success" });
+        form?.reset();
+        return;
+      }
+
+      // Lỗi từ server (ưu tiên error/msg), nếu không có thì show raw/HTTP code
+      const serverMsg =
+        (data && (data.error || data.msg)) ||
+        (raw && raw.slice(0, 300)) ||
+        `HTTP ${res.status} ${res.statusText || ""}`.trim();
+
+      setStatus({
+        ok: false,
+        msg: serverMsg || "Something went wrong, please try again later.",
+      });
+    } catch (e) {
+      const isAbort = e?.name === "AbortError";
+      setStatus({
+        ok: false,
+        msg: isAbort
+          ? "Request timed out. Please try again."
+          : (e?.message || "Network error. Please check your connection and try again."),
+      });
     } finally {
+      clearTimeout(timeoutId);
       setLoading(false);
     }
   }
@@ -72,6 +104,7 @@ export default function Page() {
           {/* FORM */}
           <div className="xl:col-span-7 order-2 xl:order-none">
             <form
+              ref={formRef}
               onSubmit={handleSubmit}
               className="flex flex-col gap-6 p-8 xl:p-10 bg-[#27272c] rounded-2xl border border-white/5 shadow-[0_8px_30px_rgba(0,0,0,0.25)]"
             >
@@ -86,7 +119,6 @@ export default function Page() {
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {/* ✅ thêm name + type hợp lệ */}
                 <Input name="name" type="text" placeholder="Name" required />
                 <Input name="phone" type="tel" placeholder="Phone number" />
                 <Input name="email" type="email" placeholder="Email address" required />
@@ -104,7 +136,16 @@ export default function Page() {
               </Button>
 
               {status && (
-                <p className={status.ok ? "text-emerald-400" : "text-red-400"}>{status.msg}</p>
+                <div
+                  className={
+                    status.ok
+                      ? "rounded-lg border border-emerald-500/30 bg-emerald-950/40 text-emerald-300 px-4 py-2"
+                      : "rounded-lg border border-red-500/30 bg-red-950/40 text-red-300 px-4 py-2"
+                  }
+                  role={status.ok ? "status" : "alert"}
+                >
+                  {status.msg}
+                </div>
               )}
             </form>
           </div>
