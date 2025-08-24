@@ -109,7 +109,7 @@ ${String(message || "")}
       subject: `New message from ${name}`,
       html,
       text,                              // thêm text để tăng deliverability
-      reply_to: email,                   // để bạn reply thẳng cho người gửi
+      replyTo: email,                    // để bạn reply thẳng cho người gửi
     });
 
     // Một số SDK trả lỗi trong field 'error'
