@@ -21,12 +21,12 @@ const projects = [
   {
     num: "01",
     category: "frontend",
-    title: "Project One",
-    description: "This is the first project description.",
-    stack: [{ name: "React" }, { name: "Next.js" }, { name: "Tailwind CSS" }],
+    title: "Project web",
+    description: "Developed and optimized the frontend of an e-commerce website using React, and TailwindCSS, focusing on responsive design, seamless user experience, and integration with RESTful APIs for real-time product, cart, and checkout functionalities.",
+    stack: [{ name: "React" }, { name: "Tailwind CSS" }],
     image: "/assets/work/thumb1.png",
-    live: "https://example.com/project-one",
-    github: "",
+    live: "https://manzy-store-38lv.onrender.com/",
+    github: "https://github.com/Web-Team-Manzy/Manzy-Store?tab=readme-ov-file",
   },
   {
     num: "02",
@@ -40,13 +40,13 @@ const projects = [
   },
   {
     num: "03",
-    category: "backend",
-    title: "Project One",
-    description: "This is the first project description.",
+    category: "fontend",
+    title: "Project personal",
+    description: "Built a personal portfolio website with React, Next.js, and TailwindCSS to showcase projects, skills, and experience. Designed a responsive and modern UI with smooth animations, optimized performance, and integrated contact form functionality to enhance personal branding.",
     stack: [{ name: "React" }, { name: "Next.js" }, { name: "Tailwind CSS" }],
     image: "/assets/work/thumb3.png",
     live: "https://example.com/project-one",
-    github: "",
+    github: "https://github.com/DoTienManhCoder/my_cv",
   },
 ];
 
