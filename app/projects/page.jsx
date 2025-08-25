@@ -20,9 +20,11 @@ import WorkSliderBtns from "@/components/WorkSliderBtns";
 const projects = [
   {
     num: "01",
-    category: "frontend",
+    category: "E-commerce",
+    myAgent: "Frontend",
     title: "Project web",
-    description: "Developed and optimized the frontend of an e-commerce website using React, and TailwindCSS, focusing on responsive design, seamless user experience, and integration with RESTful APIs for real-time product, cart, and checkout functionalities.",
+    description:
+      "Developed and optimized the frontend of an e-commerce website using React, and TailwindCSS, focusing on responsive design, seamless user experience, and integration with RESTful APIs for real-time product, cart, and checkout functionalities.",
     stack: [{ name: "React" }, { name: "Tailwind CSS" }],
     image: "/assets/work/thumb1.png",
     live: "https://manzy-store-38lv.onrender.com/",
@@ -31,18 +33,21 @@ const projects = [
   {
     num: "02",
     category: "fullstack",
+    myAgent: "Frontend",
     title: "Project 2",
-    description: "This is the first project description.",
-    stack: [{ name: "React" }, { name: "Next.js" }, { name: "Tailwind CSS" }],
+    description: "A modern and interactive dashboard designed to visualize data and manage workflows efficiently.",
+    stack: [{ name: "React" }, { name: "Tailwind CSS" }],
     image: "/assets/work/thumb2.png",
-    live: "https://example.com/project-one",
-    github: "",
+    live: "https://dashboard-dun-nine-51.vercel.app/",
+    github: "https://github.com/DoTienManhCoder/dashboard",
   },
   {
     num: "03",
-    category: "fontend",
+    category: "Portfolio",
+    myAgent: "Sole Developer",
     title: "Project personal",
-    description: "Built a personal portfolio website with React, Next.js, and TailwindCSS to showcase projects, skills, and experience. Designed a responsive and modern UI with smooth animations, optimized performance, and integrated contact form functionality to enhance personal branding.",
+    description:
+      "Built a personal portfolio website with React, Next.js, and TailwindCSS to showcase projects, skills, and experience. Designed a responsive and modern UI with smooth animations, optimized performance, and integrated contact form functionality to enhance personal branding.",
     stack: [{ name: "React" }, { name: "Next.js" }, { name: "Tailwind CSS" }],
     image: "/assets/work/thumb3.png",
     live: "https://example.com/project-one",
@@ -79,6 +84,14 @@ const Project = () => {
               <h2 className="text-[42px] font-bold leading-none text-white group-hover:text-accent transition-all duration-500 capitalize">
                 {project.category} project
               </h2>
+
+              {/* my agent */}
+              <h3 className="text-xl font-semibold text-white/80">
+                My role in this project was{" "}
+                <span className="text-accent font-bold italic underline decoration-accent/50">
+                  {project.myAgent}
+                </span>
+              </h3>
 
               {/* project description */}
               <p className="text-white/60">{project.description}</p>
@@ -149,11 +162,11 @@ const Project = () => {
                       <div className="absolute top-0 bottom-0 w-full h-full bg-black/10 z-10"></div>
 
                       {/* image */}
-                      <div className="relative w-full h-full">
+                      <div className="relative w-full h-full bg-primary flex items-center justify-center">
                         <Image
                           src={project.image}
                           fill
-                          className="object-cover"
+                          className="object-contain"
                           alt=""
                         />
                       </div>
