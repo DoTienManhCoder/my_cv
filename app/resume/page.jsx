@@ -37,32 +37,32 @@ const about = {
   ],
 };
 
-// 👉 Experience nên là công ty / vai trò / nhiệm vụ
+
 const experience = {
   icon: "assets/resume/badge.svg",
   title: "My Experience",
   description:
-    "I’ve contributed to projects across frontend and full-stack, focusing on performance and clean UI.",
+    "I’ve contributed to projects across frontend and a little backend, focusing on performance and clean UI.",
   items: [
     {
-      company: "Side Project – Portfolio",
-      position: "Frontend Developer (React/Next.js)",
-      duration: "2024 – Present",
+      company: "Manzy Store - E-commerce",
+      position: "Frontend Developer (React JS/ Tailwind CSS)",
+      duration: "October 2024 – December 2024",
     },
     {
-      company: "Freelance",
-      position: "Full-stack Developer (Next.js/Node.js/MongoDB)",
-      duration: "2024",
+      company: "DashBoard Admin - Dom Con Tutor",
+      position: "Fontend Developer (React JS/ Tailwind)",
+      duration: "October 2024 – January 2025",
     },
     {
-      company: "Open Source",
-      position: "Contributor (UI Components/Tailwind)",
-      duration: "2023 – 2024",
+      company: "Portfolio Website - Personal",
+      position: "Fontend Developer (Next JS/ Tailwind CSS/ Framer Motion)",
+      duration: "Aug 17, 2025 – Updating",
     },
   ],
 };
 
-// 👉 Education mới là trường / bằng cấp
+
 const education = {
   icon: "assets/resume/cap.svg",
   title: "My Education",
@@ -71,7 +71,7 @@ const education = {
   items: [
     {
       institution: "University of Science",
-      position: "B.Sc. in Computer Science",
+      position: "Bachelor of Information Technology (IT)",
       duration: "2022 – Present",
     },
   ],

@@ -5,20 +5,12 @@ import { FaGithub, FaLinkedin, FaFacebook, FaTwitter } from "react-icons/fa";
 import { FiMail } from "react-icons/fi";
 
 const socials = [
-  { name: "GitHub",   href: "https://github.com/your-username",       icon: <FaGithub /> },
-  { name: "LinkedIn", href: "https://www.linkedin.com/in/your-profile", icon: <FaLinkedin /> },
-  { name: "Twitter",  href: "https://twitter.com/your-handle",          icon: <FaTwitter /> },
-  { name: "Facebook", href: "https://facebook.com/your-profile",        icon: <FaFacebook /> },
-  { name: "Email",    href: "mailto:your@email.com",                    icon: <FiMail /> },
+  { name: "GitHub",   href: "https://github.com/DoTienManhCoder",       icon: <FaGithub /> },
+  { name: "LinkedIn", href: "https://www.linkedin.com/in/do-manh-9a8b48272/", icon: <FaLinkedin /> },
+  { name: "Facebook", href: "https://www.facebook.com/dotima71",        icon: <FaFacebook /> },
 ];
 
-/**
- * Props:
- * - align: 'start' | 'center' | 'end'  (mặc định: 'center' cho mobile)
- * - xlAlign: 'start' | 'center' | 'end' (mặc định: 'start' cho desktop)
- * - size: 'sm' | 'md' | 'lg' (icon size)
- * - className: string (tiện tùy biến thêm)
- */
+
 export default function Socials({
   align = "center",
   xlAlign = "start",

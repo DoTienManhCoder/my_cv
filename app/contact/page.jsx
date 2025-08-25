@@ -26,7 +26,6 @@ export default function Page() {
     const form = formRef.current; // giữ tham chiếu ổn định cho reset()
     const fd = new FormData(form);
 
-    // Honeypot chống bot (nếu có giá trị => bỏ qua)
     if (fd.get("company")) {
       setStatus({ ok: true, msg: "Send message success" });
       form?.reset();
@@ -114,7 +113,7 @@ export default function Page() {
               <div>
                 <h3 className="text-3xl xl:text-4xl font-semibold text-accent">Let&apos;s work together</h3>
                 <p className="mt-2 text-white/60">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda corporis officiis blanditiis…
+                  Got a question or proposal, or just want to say hello? Go ahead.
                 </p>
               </div>
 
